@@ -8,6 +8,7 @@ const PORT = process.env.PORT | 8888;
 //import routes
 const sfdcQuery = require("./routers/sfdc.routes");
 const aws = require("./routers/aws.routes");
+const stripe = require("./routers/stripe.routes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +29,7 @@ app.use(function (req, res, next) {
 //routes
 app.use("/", sfdcQuery);
 app.use("/", aws);
+app.use("/", stripe);
 
 app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);
