@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const upload = require("../controllers/aws/S3LargeObject");
+const mutateS3 = require("../controllers/aws/S3");
 const S3Mutations = require("../controllers/aws/S3");
 
 router.get("/aws/s3/", async (req, res) => {
@@ -33,6 +35,11 @@ router.delete("/aws/s3/", async (req, res) => {
   const data = await S3Mutations.delete(
     "cc563087-b97a-44e5-a60e-44f3d36fc191.id.adb804f7-59185b9c5.jpg"
   );
+  res.json({ data });
+});
+
+router.post("/aws/s3/upload", async (req, res) => {
+  const data = await upload(req.files.media);
   res.json({ data });
 });
 
