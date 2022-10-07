@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-//routes
+//Routes
 app.use("/", sfdcQuery);
 app.use("/", aws);
 app.use("/", stripe);
