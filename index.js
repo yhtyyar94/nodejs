@@ -4,7 +4,7 @@ require("dotenv").config();
 var cookieParser = require("cookie-parser");
 const upload = require("express-fileupload");
 const cors = require("cors");
-// const PORT = process.env.PORT | 8888;
+const PORT = process.env.PORT;
 const fs = require("fs");
 //import routes
 const sfdcQuery = require("./routers/sfdc.routes");
@@ -36,6 +36,6 @@ app.use("/", stripe);
 app.use("/", test);
 app.use("/", searchOnYoutube);
 
-app.listen(5555, () => {
-  console.log("Server is running on port " + "5555");
+app.listen(PORT, () => {
+  console.log("Server is running on port " + PORT);
 });
