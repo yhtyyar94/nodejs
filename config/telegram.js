@@ -75,7 +75,7 @@ const telegramBot = () => {
         description = false;
         marketName = false;
       }
-    } else if (!started) {
+    } else if (!started && msg.chat.type !== "group") {
       bot.sendMessage(chatId, "Menu'den bot'u baslatin");
       return;
     } else if (msg.chat.type !== "group") {
