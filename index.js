@@ -12,6 +12,8 @@ const aws = require("./routers/aws.routes");
 const stripe = require("./routers/stripe.routes");
 const test = require("./routers/test.routes");
 const searchOnYoutube = require("./routers/youtube.routes");
+const openai = require("./routers/openai.routes");
+const telegram = require("./routers/telegram.routes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,6 +37,8 @@ app.use("/", aws);
 app.use("/", stripe);
 app.use("/", test);
 app.use("/", searchOnYoutube);
+app.use("/", openai);
+app.use("/", telegram);
 
 app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);
