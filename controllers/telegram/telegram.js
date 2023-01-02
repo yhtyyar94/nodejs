@@ -1,9 +1,9 @@
 const TelegramBot = require("node-telegram-bot-api");
-const bot = new TelegramBot(process.env.Telegram, { polling: true });
 
 //1194064413
 
 exports.runBot = async (req, res) => {
+  const bot = new TelegramBot(process.env.Telegram, { polling: true });
   const commands = [
     {
       command: "/sor",
