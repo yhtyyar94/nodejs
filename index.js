@@ -13,7 +13,7 @@ const stripe = require("./routers/stripe.routes");
 const test = require("./routers/test.routes");
 const searchOnYoutube = require("./routers/youtube.routes");
 const openai = require("./routers/openai.routes");
-const telegram = require("./routers/telegram.routes");
+const telegram = require("./config/telegram");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -30,6 +30,7 @@ app.use(function (req, res, next) {
   );
   next();
 });
+telegram();
 
 //Routes
 app.use("/", sfdcQuery);
@@ -38,7 +39,6 @@ app.use("/", stripe);
 app.use("/", test);
 app.use("/", searchOnYoutube);
 app.use("/", openai);
-app.use("/", telegram);
 
 app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);
