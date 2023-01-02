@@ -80,6 +80,7 @@ const telegramBot = () => {
       return;
     } else if (msg.chat.type !== "group") {
       if (!productName) {
+        started = true;
         productName = msg.text;
         bot.sendMessage(chatId, "Urunun on tarafinin resmini yukleyin");
       } else if (!frontImage) {
@@ -88,16 +89,20 @@ const telegramBot = () => {
           "Okunur bi sekilde urunun icerik kisminin resmini yukleyin"
         );
       } else if (!ingredients) {
+        started = true;
         bot.sendMessage(
           chatId,
           "Okunur bi sekilde urunun barcode kisminin resmini yukleyin"
         );
       } else if (!barcode) {
+        started = true;
         bot.sendMessage(chatId, "Market ismini girin");
       } else if (!marketName) {
+        started = true;
         marketName = msg.text;
         bot.sendMessage(chatId, "Aciklama ekleyin");
       } else if (!description) {
+        started = true;
         description = msg.text;
         if (
           chatId &&
