@@ -4,7 +4,6 @@ const mergeImages = require("./jimp");
 const fs = require("fs");
 const bot = new TelegramBot(process.env.Telegram, {
   polling: true,
-  baseApiUrl: "https://my-nodejs-backend.onrender.com",
 });
 const telegramBot = () => {
   const commands = [
@@ -44,28 +43,38 @@ const telegramBot = () => {
     );
     let actionMsg;
 
+    let html = `
+    <i>${replyProductName}</i>
+    <b>${actionMsg}</b>
+    `;
+
     switch (query.data) {
       case "button1":
         actionMsg = "Uygun";
-        bot.sendMessage(
-          replyChatId,
-          `
-    <i>${replyProductName}</i>
-    <b>${actionMsg}</b>
-    `,
-          { parse_mode: "HTML" }
+        html = `
+        <i>${replyProductName}</i>
+        <b>${actionMsg}</b>
+        `;
+        bot.sendMessage(replyChatId, html, { parse_mode: "HTML" });
+        bot.editMessageReplyMarkup(
+          {
+            inline_keyboard: [
+              [
+                { text: "Urunu Sil", callback_data: "sil" },
+                { text: "Database'a gonder", callback_data: "database" },
+              ],
+            ],
+          },
+          { chat_id: 1194064413, message_id: query.message.message_id }
         );
         break;
       case "button2":
         actionMsg = "Supheli";
-        bot.sendMessage(
-          replyChatId,
-          `
-    <i>${replyProductName}</i>
-    <b>${actionMsg}</b>
-    `,
-          { parse_mode: "HTML" }
-        );
+        html = `
+        <i>${replyProductName}</i>
+        <b>${actionMsg}</b>
+        `;
+        bot.sendMessage(replyChatId, html, { parse_mode: "HTML" });
         bot.editMessageReplyMarkup(
           {
             inline_keyboard: [
@@ -80,14 +89,11 @@ const telegramBot = () => {
         break;
       case "button3":
         actionMsg = "Uygun degil";
-        bot.sendMessage(
-          replyChatId,
-          `
-    <i>${replyProductName}</i>
-    <b>${actionMsg}</b>
-    `,
-          { parse_mode: "HTML" }
-        );
+        html = `
+        <i>${replyProductName}</i>
+        <b>${actionMsg}</b>
+        `;
+        bot.sendMessage(replyChatId, html, { parse_mode: "HTML" });
         bot.editMessageReplyMarkup(
           {
             inline_keyboard: [
