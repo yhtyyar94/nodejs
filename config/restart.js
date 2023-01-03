@@ -10,7 +10,7 @@ const restart = () => {
         }
       }
     );
-  }, 5000);
+  }, 1800000);
 };
 
 module.exports = restart;
