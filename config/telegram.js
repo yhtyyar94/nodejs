@@ -2,10 +2,11 @@ require("dotenv").config();
 const TelegramBot = require("node-telegram-bot-api");
 const mergeImages = require("./jimp");
 const fs = require("fs");
-const sharp = require("sharp");
-const { default: axios } = require("axios");
+const bot = new TelegramBot(process.env.Telegram, {
+  polling: true,
+  baseApiUrl: "https://my-nodejs-backend.onrender.com",
+});
 const telegramBot = () => {
-  const bot = new TelegramBot(process.env.Telegram, { polling: true });
   const commands = [
     {
       command: "/sor",
