@@ -14,6 +14,7 @@ const test = require("./routers/test.routes");
 const searchOnYoutube = require("./routers/youtube.routes");
 const openai = require("./routers/openai.routes");
 const telegram = require("./config/telegram");
+const { default: axios } = require("axios");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +32,15 @@ app.use(function (req, res, next) {
   next();
 });
 telegram();
+
+const restart = setInterval(async () => {
+  try {
+    const res = await axios.get("https://my-nodejs-backend.onrender.com");
+    console.log(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+}, 1800000);
 
 //Routes
 app.use("/", sfdcQuery);
