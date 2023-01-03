@@ -14,7 +14,9 @@ const test = require("./routers/test.routes");
 const searchOnYoutube = require("./routers/youtube.routes");
 const openai = require("./routers/openai.routes");
 const telegram = require("./config/telegram");
-const { default: axios } = require("axios");
+const jimpFn = require("./config/sharp");
+const Axios = require("axios");
+const restart = require("./config/restart");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,14 +35,19 @@ app.use(function (req, res, next) {
 });
 telegram();
 
-const restart = setInterval(async () => {
-  try {
-    const res = await axios.get("https://my-nodejs-backend.onrender.com");
-    console.log(res.data);
-  } catch (error) {
-    console.log(error);
-  }
-}, 1800000);
+restart();
+
+// const merge = require("./config/jimp");
+
+// merge([
+//   "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+//   "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png",
+//   "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg",
+// ]).then(async (data) => {
+//   await data.writeAsync("merged.jpg");
+// });
+
+// jimpFn();
 
 //Routes
 app.use("/", sfdcQuery);
